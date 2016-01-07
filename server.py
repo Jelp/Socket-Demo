@@ -19,7 +19,7 @@ if __name__ == "__main__":
     # List to keep track of socket descriptors
     CONNECTION_LIST = []
     RECV_BUFFER = 4096 # Advisable to keep it as an exponent of 2
-    PORT = 5000
+    PORT = 8888
      
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # this has no effect, why ?
@@ -42,9 +42,9 @@ if __name__ == "__main__":
                 # Handle the case in which there is a new connection recieved through server_socket
                 sockfd, addr = server_socket.accept()
                 CONNECTION_LIST.append(sockfd)
-                print "Client (%s, %s) connected" % addr
+                print "%s, %s connected." % addr
                  
-                broadcast_data(sockfd, "[%s:%s] entered room\n" % addr)
+                broadcast_data(sockfd, "[%s:%s] entered\n" % addr)
              
             #Some incoming message from a client
             else:
@@ -57,8 +57,8 @@ if __name__ == "__main__":
                         broadcast_data(sock, "\r" + '<' + str(sock.getpeername()) + '> ' + data)                
                  
                 except:
-                    broadcast_data(sock, "Client (%s, %s) is offline" % addr)
-                    print "Client (%s, %s) is offline" % addr
+                    broadcast_data(sock, "%s, %s is offline" % addr)
+                    print "%s, %s is offline" % addr
                     sock.close()
                     CONNECTION_LIST.remove(sock)
                     continue
