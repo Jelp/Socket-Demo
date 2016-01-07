@@ -7,4 +7,4 @@ python server.py
 
 ## Iniciar el cliente
 
-python telnet.py <ip del servidor> <puerto default 8888>
+python telnet.py ip-del-servidor puerto-default-8888
